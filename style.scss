@@ -1,9 +1,81 @@
+@import "variables";
+@import "clearfix";
+@import "type";
+@import "footer";
+
 body {
-	background: lightyellow;
+	background-image: url(img/background.jpg);
 }
 
-h1 {
-	font-size: 3em;
-	font-family: Helvetica;
-	color: yellow;
+/*.overlay {
+	background-color: rgba(0, 0, 0, 0.5);
+	height: 100%;
+	width: 100%;
+}*/
+.title {
+	padding: $padding 0;
+}
+
+header {
+	/*padding: 1.5% 7.5%;*/
+	width: 100%;
+	margin: 2.5% 0;
+}
+
+main {
+	margin: 15px;
+	height: 700px;
+	opacity: 0.95;
+	border: 5px solid rgba(255,255,255,0.5);
+	
+/*	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;*/
+}
+
+.enter {
+	text-align: center;
+	margin: 0;
+	padding: 0;
+
+	
+	input {
+		border: 3px solid $color;
+		background-color: $dark;
+		padding: $padding;
+		-webkit-border-radius: 5px;
+		-moz-border-radius: 5px;
+		border-radius: 5px;
+	}
+}
+
+input #ward {
+	color: $light;
+}
+button {
+	border: 3px solid $color;
+	background-color: $dark;
+	padding: $padding;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	border-radius: 5px;
+	color: $light;
+
+	&:hover  {
+		background-color: $color;
+		color: $light;
+	}
+}
+p.calltoaction {
+	color: $light;
+	font-size: 1.55em;
+	padding: 10px 0;
+}
+
+
+a {
+	background-color: $color;
+	padding: .5% .75%;
+	text-decoration: none;
+	color: $light;
 }
