@@ -33,6 +33,15 @@ app.init = function(){
 
 app.postalValidation = function(postalCode){
 
-	console.log(postalCode);
+	if (app.regex.test(postalCode)){
+		console.log("valid postal code");
+	}
+	else{
+		// Invalid postal code
+		console.log("invalid postal code");
+		// Reset input
+		$('#ward').val('');
+	}
+
 };
 
