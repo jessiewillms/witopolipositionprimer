@@ -48,15 +48,33 @@ app.ajaxRequest = function(searchQuery, url){
 
 	$.ajax({
 		type: 'GET',
+		timeout: 500, // ensure callback function runs on error
 		url: app.baseUrl + url + searchQuery,
 		dataType: 'jsonp',
 		success: function(data){
 
-			console.log(data);
+			if(data.error){console.log("error:"+data.error);}
+
+			// Successful AJAX request
+			app.handleData(data);
+
+			// clear input field after successful search
+			$('#ward').val('')
 		},
-		error: function(err){
-			alert('Error: Wrong Postal Code');
-		}
+		error: function(jqXHR, textStatus, errorThrown){
+			
+			// Error, could not find postal code
+			alert("Error! Please enter a valid postal code");
+		},
 	});
 };
+
+app.handleData = function(data){
+
+	var external_id = data.boundaries_centroid[2].external_id;
+	var name = data.boundaries_centroid[2].name;
+
+	console.log('name: '+ name);
+	console.log('external_id: ' + external_id);
+}
 
