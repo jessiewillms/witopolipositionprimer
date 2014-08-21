@@ -15,6 +15,10 @@
 	<link type="image/png" href="img/favicon.png" rel="icon">
 	<link rel="stylesheet" type="text/css" href="style.css">
 	
+	<!-- JavaScript --> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="scripts/app.js"></script>
+	
 	<!-- google fonts -->
 </head>
 <body>
@@ -41,7 +45,7 @@
 	<div class="enter">	
 		<p class="calltoaction">Call to action</p>
 		<form class="input">
-			<input type="text" id="ward" name="ward" placeholder="Enter your postal code here.">
+			<input type="text" id="ward" name="ward" placeholder="Enter your postal code here." maxlength="6">
 			<button id="submitButton" name="submitButton">Submit</button>
 		</form>
 	</div>
