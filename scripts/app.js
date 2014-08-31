@@ -17,7 +17,7 @@ app.init = function(){
 
 	// API base url for AJAX requests
 	app.baseUrl = 'http://represent.opennorth.ca/';
-	
+
 	// Submit Button Event Handler
 	$('#submitButton').on('click', function(e){
 		e.preventDefault();
@@ -37,20 +37,20 @@ app.init = function(){
 // Validate PostalCode inputted using Regex
 app.postalValidation = function(postalCode){
 
-	// If postal code passes regex test 
+	// If postal code passes regex test
 	if (app.regex.test(postalCode)){
 		// then run AJAX request
 		app.ajaxRequest(postalCode,'postcodes/')
 	}
 	else{ // Else Invalid postal code
-		console.log("invalid postal code");
+		alert("Invalid Postal Code!!!");
 		// Reset input
 		$('#ward').val('');
 	}
 
 };
 
-// Make AJAX request to API 
+// Make AJAX request to API
 app.ajaxRequest = function(searchQuery, url){
 
 	$.ajax({
@@ -75,15 +75,24 @@ app.ajaxRequest = function(searchQuery, url){
 // Handle data retrieved from AJAX request and passed as parameter
 app.handleData = function(data){
 
-	// Need to determine index on boundaries_centroid array,
-	// Hardcoded to 2 for Toronto wards
+	// L1H 7K4 (Oshawa)  Non-Toronto Postal Code
+	// M5S 2M7 (Trinity - Spadina) : 20
+	// M5B 2C7 (Toronto Centre - Rosedale) : 27
+	// M9A 2J7 (Etobicoke Center) : 4
+	// L4H 1J1 (Woodbridge West) : 2
 
-	var external_id = data.boundaries_centroid[2].external_id;
-	var name = data.boundaries_centroid[2].name;
+	console.log(data);
 
-	console.log('name: '+ name);
-	console.log('external_id: ' + external_id);
-	alert('name: ' + name + ' external_id: ' + external_id);
+	// Not a Toronto Postal Code
+	if(data.boundaries_centroid.length !== 4){
+			alert('Error: Not a Toronto Postal Code!!!');
+	}
+	else{ // Valid Toronto Postal Code
+
+			var external_id = data.boundaries_centroid[3].external_id,
+		      name = data.boundaries_centroid[3].name;
+
+			alert('name: ' + name + ' external_id: ' + external_id);
+	}
 
 }
-
