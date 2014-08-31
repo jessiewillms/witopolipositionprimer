@@ -76,15 +76,16 @@ app.ajaxRequest = function(searchQuery, url){
 app.handleData = function(data){
 
 	// L1H 7K4 (Oshawa)  Non-Toronto Postal Code
+	// L4H 1J1 (Woodbridge West) Non-Toronto Postal Code
 	// M5S 2M7 (Trinity - Spadina) : 20
 	// M5B 2C7 (Toronto Centre - Rosedale) : 27
 	// M9A 2J7 (Etobicoke Center) : 4
-	// L4H 1J1 (Woodbridge West) : 2
 
 	console.log(data);
 
 	// Not a Toronto Postal Code
-	if(data.boundaries_centroid.length !== 4){
+	if(data.boundaries_centroid.length !== 4 ||
+		 data.boundaries_centroid[3].boundary_set_name !== 'Toronto ward'){
 			alert('Error: Not a Toronto Postal Code!!!');
 	}
 	else{ // Valid Toronto Postal Code
